@@ -7,9 +7,9 @@
 
 using namespace std;
 
-void Part1(const string &path);
-void Part2(const string &path);
-void PrintLeastFuel(function<int(int, int)>, const string &path);
+void task1(const string &path);
+void task2(const string &path);
+void PrintLeastFuel(const function<int(int, int)>&, const string &path);
 
 int main() {
     string path;
@@ -27,10 +27,10 @@ int main() {
             fileStream.close();
             cout << "File successfully opened!\n";
             cout << "First task data:\n";
-            Part1(path);
+            task1(path);
 
             cout << "Second task data:\n";
-            Part2(path);
+            task2(path);
 
             break;
         }
@@ -44,17 +44,17 @@ int main() {
     }while(confirmChar == 'm');
 }
 
-void Part1(const string &path)
+void task1(const string &path)
 {
     PrintLeastFuel([](int a, int b) {return abs(a - b); }, path);
 }
 
-void Part2(const string &path)
+void task2(const string &path)
 {
     PrintLeastFuel([](int a, int b) {return (abs(a - b) + 1) * abs(a - b) / 2; }, path);
 }
 
-void PrintLeastFuel(function<int(int, int)> f, const string &path)
+void PrintLeastFuel(const function<int(int, int)>& f, const string &path)
 {
     vector<int> vd;
     string line;
@@ -63,7 +63,7 @@ void PrintLeastFuel(function<int(int, int)> f, const string &path)
 
     while (getline(stream, line, ','))
     {
-        vd.push_back(atoi(line.c_str()));
+        vd.push_back(stoi(line));
     }
 
     int shortestVal = INT32_MAX;
